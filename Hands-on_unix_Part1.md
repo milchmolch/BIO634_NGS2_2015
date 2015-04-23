@@ -22,54 +22,30 @@ The UNIX **filesystem** is laid out as a hierarchical tree structure where a dir
 
 **Iron ration when working with Files/Directories**
 
-**Command**
 
-**Meaning**
+**Command** | **Meaning**
+----------- | ----------------
+ls | List files and directories
+ls -a | List all files and directories
+cd *directory* | Change to directory
+cd | Change to home directory
+cd \~ | Change to home directory
+cd \~/software | Change to a subfolder of your home directory
+mkdir | Make a directory
+cp | Copy a file/directory
+rm | Delete a file/directory
 
-ls
-
-List files and directories
-
-ls -a
-
-List all files and directories
-
-cd *directory*
-
-Change to directory
-
-cd
-
-Change to home directory
-
-cd \~
-
-Change to home directory
-
-cd \~/software
-
-Change to a subfolder of your home directory
-
-mkdir
-
-Make a directory
-
-cp
-
-Copy a file/directory
-
-rm
-
-Delete a file/directory
 
 Once the Terminal is open follow the commands below:
 
-||
+Command | Meaning
+---|------ 
 |\$ **cd**|change directory to your home directory|
 |\$ **Cd**|Doesn’t work, Linux commands are case-sensitive!|
 |\$ **pwd**|prints the current directory (print working directory)|
 |\$ **ls –l**|ls means list, -l means long; this command lists all files and directories in the current directory|
 |\$ **mkdir** tmp|make directory; the command creates the directory “tmp” in your home directory
+
 
 Here we use a relative path, we would have gotten the same result with the absolute path: mkdir \~/tmp|
 |\$ **cd** tmp|brings you to your newly created directory tmp|
