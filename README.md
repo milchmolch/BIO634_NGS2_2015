@@ -14,26 +14,30 @@ Stefan Wyder & Heidi Lischer
 ---------------- | ------------- |
 9.00 - 9.15 | Introduction | SW
 9.20 - 12.00 | **RNA-seq** | HL
-| Theory: experiment design, approaches, assumptions |
-| Hands-on |
+|| Theory: experiment design, approaches, assumptions |
+|| Hands-on |
 13.00 - 14.00 | Making sense of gene lists | SW
-| Gene Ontology, Pathways, Enrichment, GSEA, Networks |
-
+|| Gene Ontology, Pathways, Enrichment, GSEA, Networks |
+|||
 14.00 - 17.30 |	**Linux/Shell basics** | |				
-| Short Refresher | SW
-| Working with files, working with text | SW
-| Introduction to shell scripting | HL
+|| Short Refresher | SW
+|| Working with files, working with text | SW
+|| Introduction to shell scripting | HL
 
 
 ###Day 2
 
                  |               |
 ---------------- | ------------- |
-9.00 - 12.00 | **Variant Calling 2** | SW
-| Theory |
-| Hands-on: Comparing results of different pipelines, knowing the truth |
-| Biases & Artifacts |
-
+9.00 - 11.00 | **Variant Calling 2** | SW
+|| Theory |
+|| Hands-on: Comparing results of different pipelines, knowing the truth |
+|| Biases & Artifacts |
+11.00 |  *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq |
+|||
+14.00 |	*Talk:* Prof. Kentaro Shimizu (UZH): Ecological Applications of RNA-seq |
+15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection |
+16.00 - 17.30 | Exercises |
 
 
 ## Recommended books
@@ -46,3 +50,8 @@ Stefan Wyder & Heidi Lischer
   This practical book teaches the skills that scientists need for turning large sequencing datasets into reproducible and robust biological findings.
   Also covers methods on Sequence and Alignment Data. 
   More advanced than Haddock & Dunn and progresses with faster pace.
+
+
+## Installation Instructions
+
+BioLinux
