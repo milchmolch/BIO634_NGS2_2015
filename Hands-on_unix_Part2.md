@@ -1,16 +1,18 @@
-Exercises Linux Tutorial - Part 2
+#Exercises Linux Tutorial - Part 2
 
 ![](Unix_Part2_html_c773f128.jpg)
 
-Stefan Wyder Nov 2013
+##Stefan Wyder
 
-**URPP Evolution**
+###URPP Evolution
+###University of Zurich
 
-University of Zurich
+---------------
 
 Many thanks to Gregor Roth (von Mering group / IMLS, UZH) who agreed to share some exercises.
 
-![](Unix_Part2_html_a660a3f5.png)**Exercise 1: connecting to a remote host, transferring files**
+![](Unix_Part2_html_a660a3f5.png)
+##Exercise 1: connecting to a remote host, transferring files
 
 **Command**
 
@@ -56,7 +58,8 @@ To work on a server you don't need to first start Linux in a Virtual Machine and
 
 For file transfer use Use WinSCP or FileZilla
 
-![](Unix_Part2_html_a660a3f5.png)**Exercise 2: Writing and executing a perl script**
+![](Unix_Part2_html_a660a3f5.png)
+##Exercise 2: Writing and executing a perl script
 
 Many scripts in bioinformatics are written in perl. You have used the **nano** editor from the first exercise in part 1 of the Tutorial. Try to copy/paste the below simple perl program into a file and execute it. The hello world perl script:
 
@@ -81,7 +84,8 @@ Note the “./” at the start of the command. This is because the directory whe
 
 Check the file's permissions using ls -l. Remove the permission to execute it and check the permissions again.
 
-![](Unix_Part2_html_a660a3f5.png) **Exercise 3: Compressing/Decompressing files**
+![](Unix_Part2_html_a660a3f5.png) 
+##Exercise 3: Compressing/Decompressing files
 
 **File compression and decompression**
 
@@ -89,22 +93,22 @@ Check the file's permissions using ls -l. Remove the permission to execute it an
 
 **Meaning**
 
-**gzip***filename*
+**gzip** *filename*
 
 compress file with gzip
 (adds .gz extension)
 
-**gunzip***filename.gz*
+**gunzip** *filename.gz*
 
 decompress file with gzip
 (removes .gz extension)
 
-**zmore***filename.gz
-***zless***filename.gz*
+**zmore** *filename.gz*
+**zless** *filename.gz*
 
 display file content of a gzip compressed file
 
-**tar xfz***filename.tar.gz*
+**tar xfz** *filename.tar.gz*
 
 extract/decompress files from tar.gz archive
 
@@ -112,11 +116,11 @@ extract/decompress files from tar.gz archive
 
 creates archive.tar.gz
 
-**unzip***filename.zip*
+**unzip** *filename.zip*
 
 unzip archive
 
-**zgrep**pattern*****filename.gz*
+**zgrep** *pattern* filename.gz
 
 search text/pattern in a compressed file
 
@@ -133,7 +137,8 @@ For Mac OS X users only:
 On Mac OS X wget is not available by default, you can install it with your favorite package manager e.g if you have installed homebrew, simply type: brew install wget
 Alternatively, if you don’t want to install wget, use a web browser to download the file.
 
-![](Unix_Part2_html_a660a3f5.png)**Exercise 4: Write a simple bash script**
+![](Unix_Part2_html_a660a3f5.png)
+##Exercise 4: Write a simple bash script
 
 Often, you would like to run the same command with different parameters. As an exercise, write a simple bash script that will output numbers from 1 to 100. Use a **for** loop.
 
@@ -151,7 +156,8 @@ Save the above code to a file (e.g. script.sh), make the file executable (+x fla
 
 ![](Unix_Part2_html_15e79550.jpg)What is the output?
 
-![](Unix_Part2_html_a660a3f5.png) **Exercise 5: Iterating over files**
+![](Unix_Part2_html_a660a3f5.png) 
+##Exercise 5: Iterating over files
 
 First lets prepare some files: Make a new directory called FASTAS and change into the new directory.
 
@@ -167,7 +173,8 @@ By using the same concept (**for** loop) from exercise 4, can you try to iterate
 
 2. Count the number of Methionines (M) in each sequence (use grep -o)
 
-![](Unix_Part2_html_a660a3f5.png)**\* Exercise 6: Reading in arguments**
+![](Unix_Part2_html_a660a3f5.png)
+## Exercise 6: Reading in argument
 
 We often need to pass information to our script (e.g. for a cut-off, a parameter or an input file).
 
@@ -183,7 +190,8 @@ The backslash in front of " is needed for escaping as " is used a string delimit
 
 Try to write a shell script which takes as argument a filename. The script shall then display all Arabidopsis genes contained in the file. Use as input file TAIR10\_GFF3\_genes.gff from part 1 of the tutorial.
 
-![](Unix_Part2_html_a660a3f5.png) **Exercise 7: Download and install bowtie2 software**
+![](Unix_Part2_html_a660a3f5.png) 
+## Exercise 7: Download and install bowtie2 software
 
 Bowtie2 is a short-sequence read aligner (e.g. 150nt long). The reads are aligned to a reference sequence (e.g. human genome).
 
@@ -205,7 +213,8 @@ Since bowtie2 directory is not in the \$PATH environment variable (a list of dir
 
 Now you can simply type “bowtie2” anywhere (in any directory) and the **shell** will find the **bowtie2** software. The modification to \$PATH affects only the current window until it is closed – you have to add it to \~/.bash\_profile to make it permanent.
 
-![](Unix_Part2_html_a660a3f5.png) **Exercise 8: Try out your package manager**
+![](Unix_Part2_html_a660a3f5.png) 
+##Exercise 8: Try out your package manager
 
 You can often save time and work using the package manager as compiling software from source can be painful and time-consuming. The package manager helps you to install, upgrade and remove software. But first we have to check whether a software is available in the repositories. Try out the package manager of your system:
 
@@ -226,7 +235,8 @@ Check for some software you know whether it is available under homebrew (or in y
 
 To get help on brew, simply type brew
 
-![](Unix_Part2_html_a660a3f5.png)**\* Exercise 9: Exploring a FASTA format file**
+![](Unix_Part2_html_a660a3f5.png)
+##Exercise 9: Exploring a FASTA format file
 
 *Moraxella catarrhalis* (http://www.ncbi.nlm.nih.gov/nuccore/NC\_014147) is an interesting Gram-negative Gammaproteobacterium and a human pathogen of the respiratory tract. The whole genome sequence is already available on the server in the Morax/NC\_014147.fasta file. The FASTA format is widely used in sequence distribution, see the description at [http://en.wikipedia.org/wiki/FASTA\_format](http://en.wikipedia.org/wiki/FASTA_format).
 
@@ -236,7 +246,8 @@ Now look at the RNA-seq data sample stored in the Morax/rnaseq.fasta.gz file. Th
 
 ![](Unix_Part2_html_15e79550.jpg)How many reads are in the file?
 
-![](Unix_Part2_html_a660a3f5.png)**\* Exercise 10: Searching for short sequences in the*****Moraxella catarrhalis*****genome**
+![](Unix_Part2_html_a660a3f5.png)
+## Exercise 10: Searching for short sequences in the *Moraxella catarrhalis* genome
 
 ![](Unix_Part2_html_15e79550.jpg)Is the sequence “CTGTATCACCGATTT” present in the *Moraxella* genome (Morax/ NC\_014147.fasta)?
 
@@ -254,7 +265,8 @@ Explore the SAM results file with “less -S”. The parameter “-S” prevents
 
 ![](Unix_Part2_html_15e79550.jpg)Does **bowtie2** find more alignments compared to grep? Why could that be?
 
-![](Unix_Part2_html_a660a3f5.png)**\* Exercise 11: Alignment of RNA-seq sample reads to the*****Moraxella catarrhalis*****genome**
+![](Unix_Part2_html_a660a3f5.png)
+## Exercise 11: Alignment of RNA-seq sample reads to the *Moraxella catarrhalis* genome
 
 To align the RNA-seq reads in the rnaseq.fastq file, you first need to index the *Moraxella catarrhalis*genome. Use bowtie2-build to create an index with name **Morax**.
 
@@ -268,9 +280,9 @@ The results are returned in SAM format and stored to the Morax2.sam file. How ma
 
 Check what are the options of bowtie2. Use Bowtie2 manual ([http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml)) to explore and change parameters. How do different parameters influence your results?
 
-**Appendix**
+##Appendix
 
-**Installation of the gcc compiler for C/C++**
+###Installation of the gcc compiler for C/C++
 
 Typically open-source software is written in C/C++, to compile it from source (and make a binary) one needs a compiler. If its not available on your system, you have to install it
 
@@ -288,91 +300,95 @@ OSX GCC Installer
 
 Go to https://github.com/kennethreitz/osx-gcc-installer/ and follow the instructions there
 
-**Getting help**
+###Getting help
 
-||
-|**man***command*|display manual page of command|
-|*command***-h**|display shorter manual page of command (only GNUtools, not in Mac OS X)|
-|*Program***--help**|display help / usage information for software/scripts|
-|*Program***-h**|display help / usage information for software/scripts|
+Command | Description
+---|------
+**man** *command*|display manual page of command|
+*command* **-h**|display shorter manual page of command (only GNUtools, not in Mac OS X)|
+*Program* **--help**|display help / usage information for software/scripts|
+*Program* **-h**|display help / usage information for software/scripts|
 
 **File and folder manipulation**
 
-||
-|**pwd**|display current folder|
-|**ls -l***path*|list files and folders|
-|**cd***path*|change folder to path|
-|**cd** \~|change folder to home folder|
-|**mkdir** *dir\_name*|make folder|
-|**rmdir** *dir\_name*|remove folder|
-|**cp** *source* *dest*|copy file/folder and all its contents|
+Command | Description
+---|------
+**pwd**|display current folder|
+**ls -l** *path*|list files and folders|
+**cd** *path*|change folder to path|
+**cd** \~|change folder to home folder|
+**mkdir** *dir\_name*|make folder|
+**rmdir** *dir\_name*|remove folder|
+**cp** *source* *dest*|copy file/folder and all its contents|
 
 **File compression and decompression**
 
-||
-|**gzip***filename*|compress file with gzip (adds .gz extension)|
-|**gunzip***filename.gz*|decompress fildecompress file with gzip (removes .gz extension)|
-|**zmore***filename.gz
-***zless***filename.gz*|fildecompress display file content of a gzip compressed file|
-|**tar xfz***filename.tar.gz*|extract/decompress files from tar.gz archive|
-|**tar** **zcvf** *archive.tar.gz folder\_to\_compress*|creates archive.tar.gz|
-|**unzip***filename.zip*|unzip archive|
-|**zgrep**pattern*****filename.gz*|search text/pattern in a compressed file|
+Command | Description
+---|------
+**gzip** *filename*|compress file with gzip (adds .gz extension)|
+**gunzip** *filename.gz*|decompress fildecompress file with gzip (removes .gz extension)|
+**zmore** *filename.gz* | |
+**zless** *filename.gz*|file decompress display file content of a gzip compressed file|
+**tar xfz** *filename.tar.gz*|extract/decompress files from tar.gz archive|
+**tar** **zcvf** *archive.tar.gz folder\_to\_compress*|creates archive.tar.gz|
+**unzip** *filename.zip*|unzip archive|
+**zgrep** *pattern* *filename.gz*|search text/pattern in a compressed file|
 
 **Text processing**
 
-||
-|**grep**pattern*****filename*|search text/pattern|
-|**cut**|extract column|
-|**tr**|substitute/delete text/pattern|
-|**less**|display file content|
-|**wc**|count number of lines in file|
-|**sort**|sort lines|
-|**uniq**|remove lines occurring more than once|
-|**comm***filename*|compress file with gzip (adds .gz extension)|
+Command | Description
+---|------
+**grep** *pattern* *filename*|search text/pattern|
+**cut**|extract column|
+**tr**|substitute/delete text/pattern|
+**less**|display file content|
+**wc**|count number of lines in file|
+**sort**|sort lines|
+**uniq**|remove lines occurring more than once|
+**comm** *filename*|compress file with gzip (adds .gz extension)|
 
 **Network and file transfer**
 
-||
-|**wget**URL|download file (also html page) and save to current folder|
-|**ssh**–X*****username@host*|remote login to host with username
-disconnect by Ctrl+d|
-|**sftp**username@host|remote login to host with username and transfer files|
-|**scp**source target|copy files from/to host
-
-scp username@host:\~/path/*file* .
-
-scp *file* username@host:\~/path*/file*|
+Command | Description
+---|------
+**wget** URL|download file (also html page) and save to current folder|
+**ssh** –X *username@host*|remote login to host with username
+| disconnect by Ctrl+d|
+**sftp** username@host|remote login to host with username and transfer files|
+**scp** source target|copy files from/to host
+scp username@host:\~/path/*file* .|
+scp *file* username@host:\~/path*/file*| 
 
 **Permissions and Ownership**
 
 These commands also work on directories
 
-||
-|**chmod**ug+rx *filename*|Set write and execute permissions to user and group|
-|**chown**user *filename*|changes user ownership|
-|**chgrp**group *filename*|changes group ownership|
-|**chown** user:group *filename*|changes user & group ownership|
+Command | Description
+---|------
+**chmod** ug+rx *filename*|Set write and execute permissions to user and group|
+**chown** user *filename*|changes user ownership|
+**chgrp** group *filename*|changes group ownership|
+**chown** user:group *filename*|changes user & group ownership|
 
 **System information & processes**
 
-||
-|**uname -a**|display system information|
-|**df -h**|list mounted disks with available space|
-|**du -h***path*|show space usage|
-|**top**|display running processes|
-|**kill -9***pid*|kill process|
+Command | Description
+---|------
+**uname -a**|display system information|
+**df -h**|list mounted disks with available space|
+**du -h** *path*|show space usage|
+**top**|display running processes|
+**kill (-9)** *pid*|kill process|
 
 “**vi” editor**
 
-||
-|**\$ vi***filename*|start editing file with vi|
-|**i**|switch to “insert” mode|
-|**ESC**|switch to “command” mode|
-|**:w**|save|
-|**:q**|quit|
-|**:x**|save and quit|
-|**/\<pattern\>**|search for pattern, \<n\> gives you the next match|
-|**:q!**|quit without saving changes|
-
-
+Command | Description
+---|------
+**$ vi** *filename*|start editing file with vi|
+**i**|switch to “insert” mode|
+**ESC**|switch to “command” mode|
+**:w**|save|
+**:q**|quit|
+**:x**|save and quit|
+**/\<pattern\>**|search for pattern, \<n\> gives you the next match|
+**:q!**|quit without saving changes|
