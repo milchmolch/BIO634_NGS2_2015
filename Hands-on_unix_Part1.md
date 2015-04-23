@@ -38,7 +38,7 @@ rm | Delete a file/directory
 
 Once the Terminal is open follow the commands below:
 
-Command | Meaning
+|
 ---|------ 
 |\$ **cd**|change directory to your home directory|
 |\$ **Cd**|Doesn’t work, Linux commands are case-sensitive!|
@@ -48,6 +48,8 @@ Command | Meaning
 
 
 Here we use a relative path, we would have gotten the same result with the absolute path: mkdir \~/tmp|
+|
+---|------
 |\$ **cd** tmp|brings you to your newly created directory tmp|
 |\$ **pwd**|you can see that your current working directory changed|
 |\$ **cd ..**|move one level up|
@@ -58,16 +60,15 @@ Here we use a relative path, we would have gotten the same result with the absol
 |\$ **head tmp/poem.txt**|displays first 10 lines of the poem|
 |\$ **tail tmp/poem.txt**|displays last 10 lines of the poem|
 |![](Unix_Part1_html_15e79550.jpg)\$ **man** head|use **man** to get more information about the head command; use the correct parameter to display not only the first 10 lines of the poem but the entire poem
-Scrolling: press space
-
-To quit: q|
+ |Scrolling: press space
+ |To quit: q
 |\$ **less** tmp/poem.txt|less is a convenient command for displaying file contents (“less is more”; **more** is another command people used a lot before less was introduced)|
 |\$ **grep** house tmp/poem.txt|if you are searching for something, you can use **grep** *text* to display only lines matching text|
 |\$ **wc** tmp/poem.txt|displays the number of lines in the file|
 |\$ **wc** -w tmp/poem.txt|counts the words in the file|
 |\$ **cp** tmp/p + TAB|if you start typing “cp tmp/d” and then press TAB, what happens?|
 |\$ **cd** \~/tmp|change current directory to directory tmp
-On Mac OS X press alt+n for|
+ | (On Mac OS X press alt+n for ~)
 |\$ **cp** poem.txt poem2.txt|cp is used to copy the file data.tab to file data2.tab|
 |\$ **ls** -l|you should see 2 files now|
 |\$ **mv** poem2.txt poem\_v2.txt|Rename the file (also for moving it to another directory)|
@@ -204,7 +205,8 @@ Type all commands to find out what they do.
 
 grep searches are case-sensitive by default.
 
-||
+|
+---|------
 |\$ **grep** "exon" At.gff|The command grep searches each line of a file for a certain pattern and outputs all matching lines.|
 |\$ grep –v "exon" At.gff|Shows only lines which do NOT match the search pattern|
 |\$ grep –f indA.txt At.gff|Get search patterns from a file, and searches them all|
@@ -218,7 +220,8 @@ grep searches are case-sensitive by default.
 
 GNU sort is flexible and very space efficient. Its possible to sort a 20Gb file with less than 2Gb memory. It is not trivial to implement so powerful a sort by yourself.
 
-||
+|
+---|------
 |\$ sort At.gff|The command sort can be used to sort a file according to numerical values or dictionary order. Dictionary order is default.|
 |\$ sort −k4,4g At.gff|-k indicates the key (column to be sorted), g denotes numerical sorting|
 |\$ sort –k4,4 At.gff|For comparison: sort column 4 in dictionary order|
@@ -229,7 +232,8 @@ GNU sort is flexible and very space efficient. Its possible to sort a 20Gb file 
 
 Default field separator: single TAB
 
-||
+|
+---|------
 |\$ cut -f 1 At.gff|The command cut can be used to extract columns from a file. Here we extract column 1|
 |\$ cut -f 2 At.gff|Now we extract column 2|
 |\$ cut −f 1,3 At.gff||
@@ -242,7 +246,8 @@ tr is special as it only reads from standard input (i.e. you can not give it a f
 
 echo "hello hello" | tr e a
 
-||
+|
+---|------
 |\$ tr|The command tr can be used to replace/delete characters|
 |\$ tr e a|Replaces all “e”s with “a”s|
 |\$ tr –d e|Deletes all “e”s|
@@ -276,14 +281,16 @@ creates three processes (corresponding to **cat**, **grep** and **wc**) which ex
 
 Redirecting input and output: The output from programs is usually written to the screen, while their input usually comes from the keyboard (if no file arguments are given). To redirect standard output to a file instead of the screen, we use the **\>** operator:
 
-||
+|
+---|------
 |\$ echo hello|displays “hello” on the screen|
 |\$ echo hello \> hello.txt|writes “hello” to the file|
 |\$ cat hello.txt|displays contents of file; you should see “hello”|
 
 In this case, the contents of the file data.tab will be overwritten if the file already exists. If instead we want to append the output of the echo command to the file, we can use the \>\> operator:
 
-||
+|
+---|------
 |\$ echo hello \>\> hello.txt|appends “hello” to the end of the file|
 |\$ cat hello.txt|displays contents of file|
 
@@ -320,7 +327,8 @@ Use the complete genome annotation file TAIR10\_GFF3\_genes.gff for Arabidopsis 
 
 Make sure the input of uniq is **sorted**!
 
-||
+|
+---|------
 |uniq *file*|eliminate duplicate lines|
 |cut –f 1 At.gff | sort | uniq -c|uniq –c counts the number of occurences of **sorted** lines. Here we extract values of column 1, sort them and count them|
 |uniq -d|shows lines that are repeated in the output|
@@ -329,7 +337,8 @@ Make sure the input of uniq is **sorted**!
 
 awk is a simple programming language dedicated to text processing. Although you can achieve all its functionality e.g. with all-purpose programming languages like python/perl awk is often simpler. We will not learn awk now but use it for some handy one-liners.
 
-||
+|
+---|------
 |awk '{print \$1,\$2,\$4,\$5}' At.gff|awk splits a tab- or space-delimited file into variables. \$0 contains the full input line, \$1 column 1, \$2 column 2, and so on.|
 |awk '{print \$4,\$2,\$3,\$1}' At.gff|So to switch column 1 and 4 we simply type.|
 |awk '{sum=\$4+\$5;print sum,\$0}' At.gff|Print out sum of columns 4 and 5 before the line|
@@ -354,7 +363,8 @@ file2.txt \> output.txt|join two files on column 1|
 
 Explore using the man command and google searches
 
-||
+|
+---|------
 |sort -u|Make unique (Keep only of each kind)|
 |comm|Compare files, can be used to identify shared and unique elements (for Venn diagrams)|
 |paste|Merge corresponding or subsequent lines of files|
@@ -373,12 +383,9 @@ Use the complete genome annotation file TAIR10\_GFF3\_genes.gff for Arabidopsis 
 
 **Advanced: More examples**
 
-||
-|awk 'BEGIN{while((getline\<"file1.txt")
-
-\>0)lin[\$1]=\$0}\$1 in lin {print \$0"\\t"lin[\$1]}'
-
-file2.txt \> output.txt|join two files on column 1|
+|
+---|------
+|awk 'BEGIN{while((getline\<"file1.txt")\>0)lin[\$1]=\$0}\$1 in lin {print \$0"\\t"lin[\$1]}' file2.txt \> output.txt|join two files on column 1|
 |awk 'BEGIN {OFS="\\t"} {print NF}' indA.txt | sort | uniq -c|Handy to check proper formatting of a tab-delimited file (e.g. before importing it into R) – same number of columns over all lines.|
 |sort -k2.3n input.txt|sort starting from the 3rd character at column 2, as numbers|
 |(echo hello; echo world; cat file1.txt) \> output.txt|Use brackets to redirect multiple files together|
