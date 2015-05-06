@@ -15,8 +15,8 @@ heidi.lischer@ieu.uzh.ch
 
 ###Day 1
 
-		 |               ||
----------------- | ------------- |-|
+		 |               |  |
+-----------------|---------------|--|
 9.00 - 9.15 | **Welcome&Introduction** | SW&HL
 9.15 - 11.00 | **RNA-seq** | HL
 || Hands-on |
@@ -31,8 +31,8 @@ heidi.lischer@ieu.uzh.ch
 
 ###Day 2
 
-                 |               |
----------------- | ------------- |
+                 |               |  |
+---------------- | ------------- |--|
 9.00 - 11.00 | **Variant Calling 2** | SW
 || Theory |
 || Hands-on |
