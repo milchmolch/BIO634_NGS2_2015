@@ -15,9 +15,9 @@ heidi.lischer@ieu.uzh.ch
 
 ###Day 1
 
-		 |               |
----------------- | ------------- |
-9.00 - 9.15 | **Introduction** | SW
+		 |               ||
+---------------- | ------------- |-|
+9.00 - 9.15 | **Welcome&Introduction** | SW&HL
 9.15 - 11.00 | **RNA-seq** | HL
 || Hands-on |
 11.00 - 12.00 | **Making sense of gene lists** | SW
@@ -39,7 +39,7 @@ heidi.lischer@ieu.uzh.ch
 |||
 13.00 - 14.00 |  *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq |
 14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection |
-15.00 - 17.30 | Exercises, Repetition |
+15.00 - 17.30 | Exercises, Repetition | SW&HL
 
 
 ## Recommended books
