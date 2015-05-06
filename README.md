@@ -19,9 +19,9 @@ heidi.lischer@ieu.uzh.ch
 -----------------|---------------|--|
 9.00 - 9.15 | **Welcome&Introduction** | SW&HL
 9.15 - 11.00 | **RNA-seq** | HL
-|| Hands-on |
+|| Hands-on ||
 11.00 - 12.00 | **Making sense of gene lists** | SW
-13.00 - 14.00 | *Talk:* Prof. Kentaro Shimizu (UZH): Ecological Applications of RNA-seq |
+13.00 - 14.00 | *Talk:* Prof. Kentaro Shimizu (UZH): Ecological Applications of RNA-seq ||
 |||
 14.00 - 17.30 |	**Linux/Shell basics** | |				
 || Short Refresher | SW
@@ -34,11 +34,11 @@ heidi.lischer@ieu.uzh.ch
                  |               |  |
 ---------------- | ------------- |--|
 9.00 - 11.00 | **Variant Calling 2** | SW
-|| Theory |
-|| Hands-on |
-|||
-13.00 - 14.00 |  *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq |
-14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection |
+|| Theory ||
+|| Hands-on ||
+||||
+13.00 - 14.00 |  *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq ||
+14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection ||
 15.00 - 17.30 | Exercises, Repetition | SW&HL
 
 
