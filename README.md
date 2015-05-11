@@ -6,7 +6,7 @@
 
 Stefan Wyder & Heidi Lischer
 
-stefan.wyder@uzh.ch
+stefan.wyder@uzh.ch  
 heidi.lischer@ieu.uzh.ch
 
 
@@ -15,32 +15,33 @@ heidi.lischer@ieu.uzh.ch
 
 ###Day 1
 
-&nbsp;		 |              |  |
-------------|---------------|--|
+
+&nbsp;   | &nbsp; | &nbsp;
+-------- | --- | --- 
 9.00 - 9.15 | **Welcome&Introduction** | SW&HL
 9.15 - 11.00 | **RNA-seq** | HL
- | Hands-on | |
+ | Hands-on |
 11.00 - 12.00 | **Making sense of gene lists** | SW
-13.00 - 14.00 | *Talk:* Prof. Kentaro Shimizu (UZH):Ecological Applications of RNA-seq ||
- | | |
-14.00 - 17.30 |	**Linux/Shell basics** | |		
-| Short Refresher | SW
-| Working with files, working with text | SW
-| Introduction to shell scripting | HL
-
+ | |
+13.00 - 14.00 | *Talk:* Prof. Kentaro Shimizu (UZH): Ecological Applications of RNA Seq | SW
+14.00 - 17.00 | **Linux & Shell** | SW
+ | Short Refresher | SW
+ | Working with files, working with text | SW
+ | Introduction to shell scripting | HL
+ 
 
 
 ###Day 2
 
-&nbsp;		 |   |  |
-------------|---------------|--|
+&nbsp;   | &nbsp; | &nbsp;
+-------- | --- | --- 
 9.00 - 11.00 | **Variant Calling 2** | SW
-| Theory |
-| Hands-on |
-|||
-13.00 - 14.00 |  *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq | |
-14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection | |
-15.00 - 17.30 | Exercises, Repetition | SW&HL |
+ | Theory |
+ | Hands-on |
+ | |
+13.00 - 14.00 | *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq | 
+14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection | 
+15.00 - 17.30 | Exercises, Repetition | SW&HL 
 
 
 
