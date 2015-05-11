@@ -3,7 +3,8 @@
 
 ## Stefan Wyder
 
-### URPP Evolution
+### URPP Evolution in Action
+![URPP logo](Logo_URPP_kl2.png)
 ### University of Zurich
 
 ---------------
@@ -12,12 +13,7 @@ Many thanks to Gregor Roth (von Mering group / IMLS, UZH) who agreed to share so
 
 ## Connecting to a remote host, transferring files
 
-**Command**
-
-**Task**
-
-
-Command | Meaning |
+**Command** | **Task** |
 -- | ---|
 ssh -X *user*@*hostname* | Connect to server
 scp \<what\> \<towhere\> | Transfer file from/to server
@@ -94,53 +90,38 @@ When downloaded, **gunzip** the file. Then count how many proteins are in the fi
 Now **gzip** the file and try to count the number of proteins without using **gunzip** directly from the compressed file.
 
 
-## Exercise: Download and install bowtie2 software
+## Software installation
 
-Bowtie2 is a short-sequence read aligner (e.g. 150nt long). The reads are aligned to a reference sequence (e.g. human genome).
+There are several options how to install software on a Linux system. The easiest way is to use the package manager. Even though the Ubuntu package management contains a lot of software, we sometimes have to install a software "manually". We will first use the package manager and later install the latest version of bwa manually
 
-Make a new \~/software directory and download bowtie2 source code using **wget** from this link:
+### Try out your package manager
 
-[http://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.1.0/bowtie2-2.1.0-source.zip](http://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.1.0/bowtie2-2.1.0-source.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fbowtie-bio%2Ffiles%2Fbowtie2%2F2.1.0%2F&ts=1368102757&use_mirror=heanet)
+The Linux package management systems are comprehensive (for Ubuntu > 35'000 software packages), powerful and still easy to use – one of the advantages of the Linux world. You can often save time and nerves using the package manager as compiling software from source can be painful and time-consuming (due to dependencies). The package manager helps you to install, upgrade and remove software.
+ 
+It also checks automatically for software updates and your system will propose you from time to time to upgrade your system.
 
-Unzip the file, change to the unzipped folder and compile the source by running **make**:
+The drawback is that the repositories are lagging a bit behind and they often do not install the latest versions. This is not a problem for most applications but it can be problematic in the fast-moving genomics field.
 
-$ make
-
-You have compiled your first program. If you got an error message first install the gcc compiler on your system (see Appendix) and then repeat make. You can now try to run bowtie2:
-
-$ ./bowtie2
-
-Since bowtie2 directory is not in the \$PATH environment variable (a list of directory locations which Unix searches for commands when you try to run them), you can only run it from the bowtie2-2.1.0 folder or by providing the full path (e.g under Linux: /home/swyder/software/bowtie... or under Mac OS X: /Users/swyder/software/bowtie). You can add the bowtie2 folder to the \$PATH:
-
-$ export PATH=\$PATH:/home/**username**/software/bowtie2-2.1.0
-
-Now you can simply type “bowtie2” anywhere (in any directory) and the **shell** will find the **bowtie2** software. The modification to \$PATH affects only the current window until it is closed – you have to add it to \~/.bash\_profile to make it permanent.
-
-
-## Exercise: Try out your package manager
-
-You can often save time and work using the package manager as compiling software from source can be painful and time-consuming. The package manager helps you to install, upgrade and remove software. But first we have to check whether a software is available in the repositories. Try out the package manager of your system:
-
-For Ubuntu users:
-
-The Linux package management systems are comprehensive (for Ubuntu > 35'000 software packages), powerful and still easy to use – one of the advantages of the Linux world. It also checks automatically for software updates and your system will propose you from time to time to upgrade your system.
 You can interact with the package manager using a graphical user interface or the command line. There is a sort of App Store called "Ubuntu Software Center" which includes software reviews. To run it, click on topmost icon in the dock on the left and type "Ubuntu Software Center" in the search field. Try it.
 
 
+### Compile from source
 
+Let us install the latest version of the short-read mapper [bwa](https://github.com/lh3/bwa). An increasing number of programs are available on github.
+
+Go to the `~/software folder`, download and build the software like this:
+```
+git clone https://github.com/lh3/bwa
+cd bwa && make
+```
 
 
 ## Appendix
 
-### Installation of the gcc compiler for C/C++
-
-Typically open-source software is written in C/C++, to compile it from source (and make a binary) one needs a compiler. If its not available on your system, you have to install it
-
-**Linux**: install the C++ compiler using the package manager is very easy, under Ubuntu simply type in the terminal: sudo apt-get install g++ . Of course we could install the package also by using the "Ubuntu Software Center".
 
 
 
-### Getting help
+## Getting help
 
 Command | Description
 ---|------
@@ -148,6 +129,9 @@ Command | Description
 *command* **-h**|display shorter manual page of command (only GNUtools, not in Mac OS X)|
 *Program* **--help**|display help / usage information for software/scripts|
 *Program* **-h**|display help / usage information for software/scripts|
+
+
+## List of important commands
 
 **File and folder manipulation**
 
@@ -174,6 +158,7 @@ Command | Description
 **unzip** *filename.zip*|unzip archive|
 **zgrep** *pattern* *filename.gz*|search text/pattern in a compressed file|
 
+
 **Text processing**
 
 Command | Description
@@ -185,7 +170,7 @@ Command | Description
 **wc**|count number of lines in file|
 **sort**|sort lines|
 **uniq**|remove lines occurring more than once|
-**comm** *filename*|compress file with gzip (adds .gz extension)|
+**comm** *file1* *file2*|compares files (intersection,union,difference)|
 
 **Network and file transfer**
 
@@ -219,6 +204,7 @@ Command | Description
 **du -h** *path*|show space usage|
 **top**|display running processes|
 **kill** *pid*|kill process|
+
 
 “**vi” editor**
 

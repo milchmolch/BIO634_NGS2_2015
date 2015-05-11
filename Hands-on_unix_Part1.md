@@ -1,20 +1,21 @@
 # Exercises Linux Tutorial – Part 1
 
 
-## Stefan Wyder
+### Stefan Wyder
 
-### URPP Evolution
-### University of Zurich
+#### URPP Evolution in Action
+![URPP logo](Logo_URPP_kl2.png)
+#### University of Zurich
 
 ------
 
-## Exercise 1: basic file and directory manipulation
+## Basic file and directory manipulation
 
-(this exercise is from the von Mering group / ILMS)
+(this exercise is from the von Mering group / IMLS)
 
 The UNIX **filesystem** is laid out as a hierarchical tree structure where a directory can have many child directories, but only one parent directory. The top-level directory is known as the **root** (designated by a slash '**/**').
 
-**Iron ration when working with Files/Directories**
+### Iron ration when working with Files/Directories**
 
 
 **Command** | **Meaning**
@@ -102,7 +103,7 @@ $ **rmdir** tmp|finally we remove the bio directory|
 
 Of course as long as we are working on single files we can also perform file/directory operations using the Linux or Mac OS graphical interface. But when we log in to a server we do not have a graphical user interface and we need to know how to move around using the shell.
 
-## Exercise 1b: Repetition of absolute and relative paths
+### Repetition of absolute and relative paths
 
 (this exercise is from Tobias Rausch www.embl.de/\~rausch/primer.pdf‎ )
 
@@ -161,7 +162,7 @@ Finally, there is the ls command that shows the directory content and the rmdir 
 
  
 
-## Exercise 2: Using the terminal efficiently
+### Using the terminal efficiently
 
 All the commands you have used recently are stored in the history and can be retrieved to minimize typing. TAB completion also avoids typing.
 
@@ -182,7 +183,7 @@ If there are multiple options, they will be listed|
 - TAB completion also works with commands: list all commands starting with "g", "gr", "gre"
 
 
-## Exercise 3: Working with text files
+## Working with text files
 
 Linux has very powerful tools to work with text files. Its no problem to work on your laptop with 10-20Gb files which are sometimes seen in Next-Generation-Sequencing. Some people actually start using the Linux shell because their files are too large to be opened with Excel. Furthermore, working with the shell improves the reproducibility (compared with manual reformatting / selection in Excel) and reduces the error rate.
 
@@ -217,9 +218,9 @@ Quit the editor by `Control + x` and `Y`
 
 
 
-# Type all commands to find out what they do
+## Type all commands to find out what they do
 
-## grep – search pattern/text
+### grep – search pattern/text
 
 grep searches are case-sensitive by default.
 
@@ -235,7 +236,7 @@ $ grep `-c` "protein" At.gff|counts the number of lines containing "protein"|
 $ grep "3760\t5630" At.gff|Searching for 2 words separated by a tab "\t"
 (does not work on some Mac OS boxes, use piping instead and multiple greps)|
 
-## sort 
+### sort 
 
 GNU sort is flexible and very space efficient. Its possible to sort a 20 Gb file with less than 2 Gb memory. It is not trivial to implement so powerful a sort by yourself.
 
@@ -247,7 +248,7 @@ $ sort –k4,4 At.gff|For comparison: sort column 4 in dictionary order|
 $ sort –k4,4gr At.gff|Sort column 4 as numbers in descending order (`r`:reverse)|
 $ sort −k1,1 –k4,4gr At.gff|We can define several sorting keys. Sort column 1 in dictionary order, if identical, sort column 4 as numbers in descending order. This command is often used to sort a genomic file according to chromosome (column 1) and position (column 4).|
 
-## cut – extract columns
+### cut – extract columns
 
 Default field separator: single TAB
 
@@ -260,7 +261,7 @@ $ cut -f1-3,6,7- At.gff|cut out the 1st, 2nd, 3rd, 5th, 7th and following column
 $ cut -d" " -f 3 input.txt|Cut out column 3 with columns separated by a single space|
 
 
-## tr – replace/delete text
+### tr – replace/delete text
 
 **tr** is special as it only reads from standard input (i.e. you can not give it a filename to read from). You can try tr like this
 ```
@@ -273,7 +274,7 @@ $ tr e a|Replaces all "e"s with “a”s|
 $ tr `–d` e|Deletes all “e”s|
 $ tr `–s` ello i||
 
-## wc – count lines/words
+### wc – count lines/words
 
 Command | Description
 ---|------
@@ -282,7 +283,7 @@ $ wc `-l` At.gff|Shows number of lines only|
 
 
 
-## Exercise 4: pipes and redirecting input / output
+## Pipes and redirecting input / output
 
 (this exercise is from the von Mering group / ILMS)
 
@@ -325,7 +326,7 @@ You can combine input redirection with output redirection, but be careful not to
 $ wc < hello.txt > hello_counts.txt
 ```
 
-## Exercise 5: Piping together text processing commands
+## Exercise: Piping together text processing commands
 
 In exercise 4 we have learnt to combine multiple commands by using pipes. To check if a command works as expected (and to check intermediary steps) you can pipe the results to less or head like this:
 `command | command | less`
@@ -348,6 +349,80 @@ Use the complete genome annotation file `TAIR10_GFF3_genes.gff` for Arabidopsis 
 7.  Which genes encodes an exon in Chromosome 1 at position 3535383-3538439 ?
 
 8.  Which types of RNAs are annotated? (tip: use multiple cut and use "\\;" as separator)
+
+
+
+## More working on text files
+
+### uniq – report or filter out repeated lines in a file
+
+Make sure the input of uniq is **sorted**!
+
+Command | Description
+---|------
+uniq *file*|eliminate duplicate lines|
+cut –f 1 At.gff \| sort \| uniq -c |uniq –c counts the number of occurences of **sorted** lines. Here we extract values of column 1, sort them and count them|
+uniq -d|shows lines that are repeated in the output|
+
+### awk
+
+awk is a simple programming language dedicated to text processing. Although you can achieve all its functionality e.g. with all-purpose programming languages like python/perl awk is often simpler and convenient to use in pipes. We will not learn awk now but use it for some handy one-liners.
+
+Command | Description
+---|------
+awk '{print \$1,\$2,\$4,\$5}' At.gff|awk splits a tab- or space-delimited file into variables. \$0 contains the full input line, \$1 column 1, \$2 column 2, and so on.|
+awk '{print \$4,\$2,\$3,\$1}' At.gff|So to switch column 1 and 4 we simply type.|
+awk '{sum=\$4+\$5;print sum,\$0}' At.gff|Print out sum of columns 4 and 5 before the line|
+awk '{$2=$4+$5;print}' At.gff|Replace column 2 by the sum of columns 4 and 5|
+awk 'BEGIN {OFS="\\t"} {print \$4,\$2,\$3,\$1}' At.gff|We want to create tab-separated output (default is space-separated output)|
+awk 'BEGIN {FS=",";OFS="\\t"} {print \$4,\$2,\$3,\$1}' input.file|We have to change the input field separator as the input file indB.txt is comma-separated (“,”)|
+awk ‘$4\>1000 && \$5\<6000 {print \$0}’ At.gff|Shows all lines for positions between 100 and 200|
+awk '{SUM+=\$4} END {print SUM}' input.txt|Print out the sum of column 4 over the whole file|
+awk '{SUM+=\$4} END {print SUM/NR}' At.gff|Print out the mean of column 4|
+awk '/gene/ {c++} END {print c}' At.gff|Count lines containing “gene”| 
+awk '$4\>max {max=$4; maxline=$0} END {print maxline}' At.gff|Print the maximum value of column 4 observed in the file|
+awk 'BEGIN{while((getline\<"file1.txt")>0)lin[\$1]=\$0}\$1 in lin {print \$0"\\t"lin[\$1]}' file2.txt \> output.txt|join two files on column 1|
+awk 'BEGIN {FS="\\t"} {print NF}' At.gff | sort | uniq -c|Handy to check proper formatting – same number of columns over all lines.|
+
+### Even more useful commands
+
+Explore using the man command and google searches
+
+Command | Description
+---|------
+sort -u|Make unique (keep only of each kind)|
+comm|Compare files, can be used to identify shared and unique elements (for Venn diagrams)|
+paste|Merge corresponding or subsequent lines of files|
+join|Join files on common fields|
+diff|Compare files line by line. See also diff3|
+
+### Advanced: More examples
+
+Command | Description
+---|------
+awk 'BEGIN{while((getline\<"file1.txt")\>0)lin[\$1]=\$0}\$1 in lin {print \$0"\\t"lin[\$1]}' file2.txt \> output.txt|join two files on column 1|
+awk 'BEGIN {OFS="\\t"} {print NF}' indA.txt | sort | uniq -c|Handy to check proper formatting of a tab-delimited file (e.g. before importing it into R) – same number of columns over all lines.|
+sort -k2.3n input.txt|sort starting from the 3rd character at column 2, as numbers|
+(echo hello; echo world; cat file1.txt) \> output.txt|Use brackets to redirect multiple files together|
+
+
+## (Advanced) Exercises
+
+Use the complete genome annotation file `TAIR10_GFF3_genes.gff` for Arabidopsis from above.
+
+2. How many genes are encoded in the Arabidopis genome?
+
+3. How many genes are encoded in the Arabidopis genome? **The safe way** 
+
+3. How many genes are encoded by each chromosome?
+
+4. Find the gene with the highest number of exons.
+
+5. How many genes are not spliced?
+
+6. Extract exons encoded on Chromosome 3 on positions 10000 – 30000
+
+7. How many genes are encoded by the region?
 
 
 
@@ -443,80 +518,6 @@ Note=tRNA
 ```
 
 
-
-##Exercise 6: More working on text files
-
-## uniq – report or filter out repeated lines in a file
-
-Make sure the input of uniq is **sorted**!
-
-Command | Description
----|------
-uniq *file*|eliminate duplicate lines|
-cut –f 1 At.gff \| sort \| uniq -c |uniq –c counts the number of occurences of **sorted** lines. Here we extract values of column 1, sort them and count them|
-uniq -d|shows lines that are repeated in the output|
-
-## awk
-
-awk is a simple programming language dedicated to text processing. Although you can achieve all its functionality e.g. with all-purpose programming languages like python/perl awk is often simpler and convenient to use in pipes. We will not learn awk now but use it for some handy one-liners.
-
-Command | Description
----|------
-awk '{print \$1,\$2,\$4,\$5}' At.gff|awk splits a tab- or space-delimited file into variables. \$0 contains the full input line, \$1 column 1, \$2 column 2, and so on.|
-awk '{print \$4,\$2,\$3,\$1}' At.gff|So to switch column 1 and 4 we simply type.|
-awk '{sum=\$4+\$5;print sum,\$0}' At.gff|Print out sum of columns 4 and 5 before the line|
-awk '{$2=$4+$5;print}' At.gff|Replace column 2 by the sum of columns 4 and 5|
-awk 'BEGIN {OFS="\\t"} {print \$4,\$2,\$3,\$1}' At.gff|We want to create tab-separated output (default is space-separated output)|
-awk 'BEGIN {FS=",";OFS="\\t"} {print \$4,\$2,\$3,\$1}' input.file|We have to change the input field separator as the input file indB.txt is comma-separated (“,”)|
-awk ‘$4\>1000 && \$5\<6000 {print \$0}’ At.gff|Shows all lines for positions between 100 and 200|
-awk '{SUM+=\$4} END {print SUM}' input.txt|Print out the sum of column 4 over the whole file|
-awk '{SUM+=\$4} END {print SUM/NR}' At.gff|Print out the mean of column 4|
-awk '/gene/ {c++} END {print c}' At.gff|Count lines containing “gene”| 
-awk '$4\>max {max=$4; maxline=$0} END {print maxline}' At.gff|Print the maximum value of column 4 observed in the file|
-awk 'BEGIN{while((getline\<"file1.txt")>0)lin[\$1]=\$0}\$1 in lin {print \$0"\\t"lin[\$1]}' file2.txt \> output.txt|join two files on column 1|
-awk 'BEGIN {FS="\\t"} {print NF}' At.gff | sort | uniq -c|Handy to check proper formatting – same number of columns over all lines.|
-
-## Even more useful commands
-
-Explore using the man command and google searches
-
-Command | Description
----|------
-sort -u|Make unique (keep only of each kind)|
-comm|Compare files, can be used to identify shared and unique elements (for Venn diagrams)|
-paste|Merge corresponding or subsequent lines of files|
-join|Join files on common fields|
-diff|Compare files line by line. See also diff3|
-
-## Advanced: More examples
-
-Command | Description
----|------
-awk 'BEGIN{while((getline\<"file1.txt")\>0)lin[\$1]=\$0}\$1 in lin {print \$0"\\t"lin[\$1]}' file2.txt \> output.txt|join two files on column 1|
-awk 'BEGIN {OFS="\\t"} {print NF}' indA.txt | sort | uniq -c|Handy to check proper formatting of a tab-delimited file (e.g. before importing it into R) – same number of columns over all lines.|
-sort -k2.3n input.txt|sort starting from the 3rd character at column 2, as numbers|
-(echo hello; echo world; cat file1.txt) \> output.txt|Use brackets to redirect multiple files together|
-
-
-## (Advanced) Exercises
-
-Use the complete genome annotation file `TAIR10_GFF3_genes.gff` for Arabidopsis from above.
-
-2. How many genes are encoded in the Arabidopis genome?
-
-3. How many genes are encoded in the Arabidopis genome? **The safe way** 
-
-3. How many genes are encoded by each chromosome?
-
-4. Find the gene with the highest number of exons.
-
-5. How many genes are not spliced?
-
-6. Extract exons encoded on Chromosome 3 on positions 10000 – 30000
-
-7. How many genes are encoded by the region?
-
-
 ## Solutions for Advanced Exercises
 
 
@@ -594,16 +595,9 @@ awk '$1=="Chr3" && $3=="gene" && $4>=10000 && $5<=30000 {print }' TAIR10_GFF3_ge
 ``` 
 
 
-## System information, processes and other useful commands
+## List of important commands
 
-Command | Description
----|------
-**uname -a**|display system information|
-**man** *command*|display manual page of command|
-**df -h**|list mounted disks with available space|
-**du -h** *path*|show space usage|
-**top**|display running processes|
-**kill** *pid*|kill process|
+a more complete list is available under 
 
 
 **File and folder manipulation, compression**
@@ -620,31 +614,17 @@ Command | Description
 **less** *filename*|display file content|
 **wc** *filename*|count number of lines in file|**head**  *filename*|shows first few lines of file|
 **tail** *filename*|shows last few lines of file|
-**gzip** *filename*|compress file with gzip (adds .gz extension)|
-**gunzip** *filename*|decompress file (removes .gz extension)|
-**tar xfz** *filename.tar.gz*|decompress files from tar.gz archive|
-**tar** **zcvf** *archive.tar.gz folder\_to\_compress*|creates archive.tar.gz|
-**unzip** filename.zip|unzip archive|
 
-**Network and file transfer**
+
+**Text processing**
 
 Command | Description
 ---|------
-**wget**URL|download file (html page) and save to current folder|
-**ssh -X** *username@host*|remote login to host with username|
-**sftp**username@host|remote login to host with username and transfer files|
-
-“**vi” editor**
-
-Command | Description
----|------
-**\$ vi** *filename*|start editing file with vi|
-**i**|switch to “insert” mode|
-**ESC**|switch to “command” mode|
-**:w**|save|
-**:q**|quit|
-**:x**|save and quit|
-**/\<pattern\>**|search for pattern, \<n\> gives you the next match|
-**:q!**|quit without saving changes|
-
-
+**grep** *pattern* *filename*|search text/pattern|
+**cut**|extract column|
+**tr**|substitute/delete text/pattern|
+**less**|display file content|
+**wc**|count number of lines in file|
+**sort**|sort lines|
+**uniq**|remove lines occurring more than once|
+**comm** *file1* *file2*|compares files (intersection,union,difference)|
