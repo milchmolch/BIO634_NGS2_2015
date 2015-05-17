@@ -51,10 +51,13 @@ $ **pwd** | you can see that your current working directory changed|
 $ **cd ..** | move one level up|
 $ **ls -l** | you should see the newly created tmp directory
 $ **nano tmp/poem.txt**|start editing file `tmp/poem.txt`|
-| copy/paste the poem below to the `poem.txt` file in your nano editor
+| copy/paste the poem by Robert Frost below to the `poem.txt` file in your nano editor
 
 
+(Copyright by Henry Holt and Company, from http://www.poetryfoundation.org/poem/171621)
 ```
+
+
 Whose woods these are I think I know.   
 His house is in the village though;   
 He will not see me stopping here   
