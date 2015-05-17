@@ -22,13 +22,12 @@ heidi.lischer@ieu.uzh.ch
 -------- | --- | --- 
 9.30 - 9.40 | **Welcome & Introduction** | SW&HL
 9.40 - 11.30 | **RNA-seq** <br /> [Presentation](RNAseq/RNAseq.pdf) \| [Hands-on](RNAseq/Exercises_RNAseq.pdf) | HL
- |  |
 11.30 - 12.00 | **Making sense of gene lists** <br /> [Presentation](GENE_LISTS/MakingSenseOfGeneLists.pdf)  \| [Hands-on](GENE_LISTS/Exercises_MakingSenseOfGeneLists.md)| SW
  | |
 13.00 - 14.00 | *Talk:* Prof. Kentaro Shimizu (UZH): Ecological Applications of RNA Seq [pdf](TALKS/RNAseqShimizu2015.pdf) |
 14.00 - 17.30 | **Linux & Shell** |
  | Short Refresher <br /> Working with files, working with text <br /> [Presentation](BASH_SHELL/LinuxBash.pdf) <br /> [Hands-on 1](BASH_SHELL/Hands-on_unix_Part1.md) \| [Hands-on 2](BASH_SHELL/Hands-on_unix_Part2.md) <br /> [List of important commands](BASH_SHELL/ImportantShellCommands.md) | SW
- | Introduction to shell scripting | HL
+ | Introduction to shell scripting <br /> Presentation \| [Hands-on](BASH_SHELL/Exercises_BashScripting.pdf)| HL
  
 
 
@@ -36,9 +35,7 @@ heidi.lischer@ieu.uzh.ch
 
 &nbsp;   | &nbsp; | &nbsp;
 -------- | --- | --- 
-9.30 - 12.00 | **Variant Calling 2** | SW
- | Theory |
- | Hands-on |
+9.30 - 12.00 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md)| SW
  | |
 13.00 - 14.00 | *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq | 
 14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection | 
