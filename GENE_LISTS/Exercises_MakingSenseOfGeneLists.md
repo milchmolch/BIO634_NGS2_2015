@@ -57,10 +57,6 @@ However, many derivatives of the GSEA approach are now available in Bioconductor
 
 ### Exercise 
 
-Download the GSEA software and exercise files by:
-```
-wget https://dl.dropboxusercontent.com/u/3435091/GSEA_files.zip
-```
 First we need to provide a **list of ranked genes**. Here we take the probabilities for differential expression between the 2 groups, 
 Newborn vs Adults, and we separate the 2 possible directions by multiplying FDR with -1 for genes which are underexpressed in 
 Newborns relative to Adults (we can take either p-value or FDR which give the same result).

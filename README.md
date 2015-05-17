@@ -49,26 +49,6 @@ heidi.lischer@ieu.uzh.ch
 
 or attendance of `Next-Generation Sequencing 1 – Introductory Course: Assembly, Mapping, and Variant Calling
 
-## Recommended books (Computing Skills)
-
-- [Haddock & Dunn. Practical Computing for Biologists. Sinauer Associates 2011.](http://practicalcomputing.org)  
-  A good book that covers the shell/command line, programming in python & bash, databases, regular expressions. 
-  Suitable for self-study and as a reference book.
-
-- [Vince Buffalo. Bioinformatics Data Skills. O'reilly 2015](http://shop.oreilly.com/product/0636920030157.do)  
-  This practical book teaches the skills that scientists need for turning large sequencing datasets into reproducible and robust biological findings.
-  Also covers methods on Sequence and Alignment Data. 
-  More advanced than Haddock & Dunn and progresses with faster pace.
-
-
-## Recommended websites
-
-- <http://software-carpentry.org/>  
-  Scientific Computing Resources for learning bash shell, programming in python, R, …]
-- [SEQanswers](http://seqanswers.com/) the NGS community (Questions&Answers, protocols, software lists, news) 
-- [BioStars](https://www.biostars.org/) for questions about biocomputing and scripting for biologists
-- [stackoverflow](http://stackoverflow.com/) for questions related to coding
-
 
 ## Directory structure
 
@@ -111,3 +91,29 @@ We will reuse the Virtual Machine (VM) of the first NGS course BIO610. However, 
 - Run VirtualBox and do `File | Import Appliance` from the menu. Choose the VM image you just downloaded (file with extension .OVA). This will trigger a menu where you can change the Appliance settings. We recommend giving the VM as much memory as you can given your local machine (about 2/3 of the total memory, but between 2-4 GB). Start the import process.
 
 Now you can start the VM by selecting it in the list and clicking on the Start button. Login and proceed with the instructions 
+
+
+## Recommended books (Computing Skills)
+
+- [Haddock & Dunn. Practical Computing for Biologists. Sinauer Associates 2011.](http://practicalcomputing.org)  
+  A good book that covers the shell/command line, programming in python & bash, databases, regular expressions. 
+  Suitable for self-study and as a reference book.
+
+- [Vince Buffalo. Bioinformatics Data Skills. O'reilly 2015](http://shop.oreilly.com/product/0636920030157.do)  
+  This practical book teaches the skills that scientists need for turning large sequencing datasets into reproducible and robust biological findings.
+  Also covers methods on Sequence and Alignment Data. 
+  More advanced than Haddock & Dunn and progresses with faster pace.
+
+
+## Recommended websites
+
+**General**  
+- <http://software-carpentry.org/>  
+  Scientific Computing Resources for learning bash shell, programming in python, R, …]  
+- [SEQanswers](http://seqanswers.com/) the NGS community (Questions&Answers, protocols, software lists, news)   
+- [BioStars](https://www.biostars.org/) for questions about biocomputing and scripting for biologists  
+- [stackoverflow](http://stackoverflow.com/) for questions related to coding
+
+**Linux/Shell**  
+- [Cheatsheet intermediate](http://www.cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/)  
+- [SIB e-learning: UNIX fundamentals](http://edu.isb-sib.ch/pluginfile.php/2878/mod_resource/content/3/couselab-html/content.html)

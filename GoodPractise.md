@@ -28,6 +28,8 @@ based on Leigthon Pritchard and Peter Cock's [Introduction to Bionformatics Tool
 - Always sanity test
 - Test output for robustness of parameter choice
 
+see also [The dangers of default parameters](http://www.acgt.me/blog/2015/4/27/the-dangers-of-default-parameters-in-bioinformatics-lessons-from-bowtie-and-tophat)
+
 ### Rule 4
 - Everyone has expectations of their data/experiment
   - Beware cognitive errors, such as confirmation bias!

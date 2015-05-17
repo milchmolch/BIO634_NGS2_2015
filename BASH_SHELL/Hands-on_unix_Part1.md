@@ -106,7 +106,14 @@ $ **rmdir** tmp|finally we remove the bio directory|
 
 Of course as long as we are working on single files we can also perform file/directory operations using the Linux or Mac OS graphical interface. But when we log in to a server we do not have a graphical user interface and we need to know how to move around using the shell.
 
-### Repetition of absolute and relative paths
+
+### Absolute vs relative paths(this exercise is from Stephen Turner)Let’s say you are here: /home/turnersd/scripts/. If you wanted to go to /home/turnersd/, you could type: `cd /home/turnersd/`. Or you could use a relative path: `cd ..` (two periods) will take you one directory “up” to the parent directory of the current directory.. (a single period) means the current directory  
+.. (two periods) means the parent directory  ~ means your home directory  **A few examples** 
+
+Command | Description
+---|------mv myfile .. | moves myfile to the parent directorycp myfile ../newname | copies myfile to the parent directory and names the copy newnamecp /home/turnersd/scripts/bstrap.pl . | copies bstrap.pl to “.” i.e. to dot, or the current directory you’re incp myfile ~/subdir/newname | copies myfile to subdir in your home, naming the copy newnamemore ../../../myfile | displays screen by screen the content of myfile, which exists 3 directories “up”
+
+### (optional) Repetition of absolute and relative paths
 
 (this exercise is from Tobias Rausch www.embl.de/\~rausch/primer.pdf‎ )
 
