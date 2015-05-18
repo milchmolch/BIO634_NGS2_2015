@@ -27,8 +27,8 @@ heidi.lischer@ieu.uzh.ch
 13.00 - 14.00 | *Talk:* Prof. Kentaro Shimizu (UZH): Ecological Applications of RNA Seq [pdf](TALKS/RNAseqShimizu2015.pdf) |
 14.00 - 17.30 | **Linux & Shell** |
  | Short Refresher <br /> Working with files, working with text <br /> [Presentation](BASH_SHELL/LinuxBash.pdf) <br /> [Hands-on 1](BASH_SHELL/Hands-on_unix_Part1.md) \| [Hands-on 2](BASH_SHELL/Hands-on_unix_Part2.md) <br /> [List of important commands](BASH_SHELL/ImportantShellCommands.md) | SW
- | Introduction to shell scripting <br /> Presentation \| [Hands-on](BASH_SHELL/Exercises_BashScripting.pdf)| HL
- 
+ | Introduction to shell scripting <br /> [Presentation](BASH_SHELL/BashScripting.pdf) \| [Hands-on](BASH_SHELL/Exercises_BashScripting.pdf)| HL
+
 
 
 ###Day 2
