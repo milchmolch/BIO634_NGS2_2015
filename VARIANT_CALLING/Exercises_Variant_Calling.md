@@ -16,7 +16,7 @@ The approaches presented here work for Illumina or Ion Torrent data.
 ### Download data
 
 ```
-wget 
+wget https://www.dropbox.com/s/9p8zcg1add22q0u/DATA_NGS2_SNP.zip?dl=0
 ```
 
 
