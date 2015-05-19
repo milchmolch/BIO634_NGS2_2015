@@ -37,7 +37,7 @@ make
 Go to the ~/software directory and build & install samtools:
 ```
 git clone git clone https://github.com/samtools/samtools
-cd htslib
+cd samtools
 make
 ```
 
@@ -63,7 +63,7 @@ Go to the `~/software` folder and build & install vt:
 
 ```
 git clone https://github.com/atks/vt
-cd htslib
+cd vt
 make
 ```
 
@@ -128,8 +128,7 @@ Many downstream applications only work with compressed & indexed vcf files using
 bgzip Ecoli_DH10B-mdup.vcf # makes Ecoli_DH10B-mdup.vcf.gz
 tabix -p vcf Ecoli_DH10B-mdup.vcf.gz
 ```
-
-Save the script below as indexVCF.sh. It sorts, compresses and indexes a vcf file: `./indexVCF.sh VcfFile` 
+As we have to do this for each and every vcf, we can write a script to do the job. Save the script below as indexVCF.sh. It sorts, compresses and indexes a vcf file: `./indexVCF.sh VcfFile` 
 ```
 # processes a vcf file for downstream analysis: sorting by chromosome and position, compressing, and indexing a vcf file
 # from http://wiki.bits.vib.be/index.php/NGS_variant_analysis_custom_functions_and_code
@@ -175,6 +174,10 @@ Of primary interest to most users is the QUAL field, which estimates the probabi
 
 ### Filtering variants
 
+With any variant caller you use, there will be an inherent trade-off between sensitivity and specificity. Typically, you would carry forward as much data as practical at each processing step, deferring final judgement until later so you have more information. For example, you might not want to exclude low coverage regions in one sample from your raw data because you may be able to infer a genotype based on family information later.
+
+This typically leads to NGS pipelines that maximize sensitivity, leading to a **substantial number of false positives.** Filtering after variant calling can be useful to eliminate false positives based on all the data available after numerous analyses.
+
 Like this we remove all low-quality variants:
 ```
 ~/software/bcftools/bcftools filter -O z -o Ecoli_DH10B-mdup-filtered.vcf.gz -i'%QUAL>10' Ecoli_DH10B-mdup.vcf.gz
@@ -183,7 +186,7 @@ vt peek Ecoli_DH10B-mdup.vcf.gz
 All but 1 variant have been filtered out as low-quality.
 
 
-An alternative summary with more information
+An alternative summary with more information using bcftools:
 ```
 ~/software/bcftools/bcftools stats -F EcoliDH10B.fa -s - Ecoli_DH10B-mdup.vcf.gz > Ecoli_DH10B-mdup.vcf.gz.stats
 ~/software/bcftools/plot-vcfstats -p bcftools_plots/ Ecoli_DH10B-mdup.vcf.gz.stats
@@ -207,6 +210,7 @@ Go to the Integrative Genome Viewer (IGV) website http://www.broadinstitute.org/
 
 
 - Do you think some records are SNPs? Or rather sequencing errors? Look up the base call qualities at the varying positions by moving the cursor to a nucleotide.
+
 
 ## BAM file preprocessing
 
@@ -240,9 +244,8 @@ If you plan to use the GATK for-profit, you will need to purchase a license. Che
 - GATK is under constant development. Check the website from time to time.
 
 
-Run this script
+Run this script Run_GATK_Ecoli.sh 
 ```
-Run_GATK_Ecoli.sh 
 SAMTOOLS=~/software/samtools/samtools
 GATK=~/software/GATK/GenomeAnalysisTK.jar
 PICARD=~/software/picard-tools-1.130/picard.jar
@@ -347,12 +350,6 @@ vt peek VCF.vcf-filtered.gz
 ``` 
 - Check some variants in IGV
 
-
-### Filtering
-
-On any variant caller you use, there will be an inherent trade-off between sensitivity and specificity. Typically, you would carry forward as much data as practical at each processing step, deferring final judgement until later so you have more information. For example, you might not want to exclude low coverage regions in one sample from your raw data because you may be able to infer a genotype based on family information later.
-
-This typically leads to NGS pipelines that maximize sensitivity, leading to a **substantial number of false positives.** Filtering after variant calling can be useful to eliminate false positives based on all the data available after numerous analyses.
 
 
 ## Variant Annotation using SnpEff & SnpSift
