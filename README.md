@@ -38,7 +38,7 @@ heidi.lischer@ieu.uzh.ch
 9.30 - 12.00 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md)| SW
  | |
 13.00 - 14.00 | *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq | 
-14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection | 
+14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection [pdf](TALKS/NGS_Selection_Fischer_2015.pdf)| 
 15.00 - 17.30 | Exercises | SW&HL 
 
 
