@@ -37,7 +37,7 @@ heidi.lischer@ieu.uzh.ch
 -------- | --- | --- 
 9.30 - 12.00 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md)| SW
  | |
-13.00 - 14.00 | *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq | 
+13.00 - 14.00 | *Talk:* Alexandra Jansen van Rensburg (UZH): RAD-Seq [pdf](TALKS/RADseq_JansenVanRensburg.pdf) | 
 14.00 - 15.00 |	*Talk:* Dr. Martin Fischer (ETH): Detection of signatures of selection [pdf](TALKS/NGS_Selection_Fischer_2015.pdf)| 
 15.00 - 17.30 | Exercises | SW&HL 
 
@@ -93,7 +93,7 @@ We will reuse the Virtual Machine (VM) of the first NGS course BIO610. However, 
 Now you can start the VM by selecting it in the list and clicking on the Start button. Login and proceed with the instructions 
 
 
-## Recommended books (Computing Skills)
+## Recommended books (Practical Computing Skills)
 
 - [Haddock & Dunn. Practical Computing for Biologists. Sinauer Associates 2011.](http://practicalcomputing.org)  
   A good book that covers the shell/command line, programming in python & bash, databases, regular expressions. 
