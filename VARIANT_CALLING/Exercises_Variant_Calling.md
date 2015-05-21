@@ -69,7 +69,7 @@ make
 
 Export the path to vt like this:
 ```
-export PATH=~/software/vt/vt:$PATH
+export PATH=~/software/vt:$PATH
 ```
 
 ## SNP Calling using FreeBayes
@@ -88,7 +88,7 @@ FREEBAYES=~/software/freebayes/bin/freebayes
 $FREEBAYES --help
 ```
 
-The reads were already mapped to the *E.coli* DH10B genome, you will find a BAM file `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam`.
+The reads were already mapped to the *E.coli* DH10B genome, you will find a BAM file `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam`. Let us rename the file to `Ecoli_DH10B.bam` to save typing. 
 
 
 Get information about the BAM file doing:
@@ -128,7 +128,7 @@ Many downstream applications only work with compressed & indexed vcf files using
 bgzip Ecoli_DH10B-mdup.vcf # makes Ecoli_DH10B-mdup.vcf.gz
 tabix -p vcf Ecoli_DH10B-mdup.vcf.gz
 ```
-As we have to do this for each and every vcf, we can write a script to do the job. Save the script below as indexVCF.sh. It sorts, compresses and indexes a vcf file: `./indexVCF.sh VcfFile` 
+As we have to do this for each vcf file, we write a script that does the job. Save the script below as `indexVCF.sh` and make it executable. It sorts, compresses and indexes a vcf file by doing: `./indexVCF.sh VcfFile` 
 ```
 # processes a vcf file for downstream analysis: sorting by chromosome and position, compressing, and indexing a vcf file
 # from http://wiki.bits.vib.be/index.php/NGS_variant_analysis_custom_functions_and_code
@@ -244,13 +244,17 @@ If you plan to use the GATK for-profit, you will need to purchase a license. Che
 - GATK is under constant development. Check the website from time to time.
 
 
-Run this script Run_GATK_Ecoli.sh 
+The following script `Run_GATK_Ecoli.sh` runs a GATK pipeline for the *E.coli* BAM file. Change the variable BAMFILE if you have renamed the BAM file earlier.
 ```
+#!/bin/bash
+
+ # BAM processing using PICARD, SNP calling using GATK
+
 SAMTOOLS=~/software/samtools/samtools
 GATK=~/software/GATK/GenomeAnalysisTK.jar
 PICARD=~/software/picard-tools-1.130/picard.jar
 
- # additional points to improve
+ # IDEAS to improve the script:
  # add memory parameter to java -Xmx6g
  # add 2> to capture errors
  # add input and output folders
@@ -267,15 +271,12 @@ java -jar $PICARD CreateSequenceDictionary R=$REF_FILE O=${REF_FILE%%.*}.dict
 
  # sort mappings by name to keep paired reads together
 java -Xmx1g -jar $PICARD SortSam \
+	# R=$REF_FILE
 	I=$BAM_FILE \
 	O=${BAM_FILE%%.*}_sorted.bam \
 	SO=queryname \
 	VALIDATION_STRINGENCY=LENIENT \
 	2>SortSam_queryname.err
-
- #java -Xmx1g -jar $PICARD SortSam R=$REF_FILE I=/home/student/NGS2/Variant_Calling2/ECOLI/${BAM_FILE} O=BAM_sorted.bam SO=queryname VA
-LIDATION_STRINGENCY=LENIENT
-
 
  # fix mate information and sort
 java -Xmx1g -jar $PICARD FixMateInformation \
@@ -314,36 +315,76 @@ java -Xmx1g -jar $PICARD BuildBamIndex \
 
 
  # identify regions for indel local realignment of the selected chromosome
-java -jar $GATK -T RealignerTargetCreator -R $REF_FILE -I $BAM_FILE -o target_intervals.list
+java -jar $GATK -T RealignerTargetCreator \
+	-R $REF_FILE \
+	-I $BAM_FILE \
+	-o target_intervals.list
 
  # perform indel local realignment of the selected chromosome
-java -jar $GATK -T IndelRealigner -R $REF_FILE -I $BAM_FILE -targetIntervals target_intervals.list -o ${BAM_FILE%%.bam}_realigned.bam
+java -jar $GATK -T IndelRealigner \
+	-R $REF_FILE \
+	-I $BAM_FILE \
+	-targetIntervals target_intervals.list \
+	-o ${BAM_FILE%%.bam}_realigned.bam
 
  # analyze patterns of covariation
  # only possible with known SNPs 
- # for non-model organisms it is possiple to interpret the high quality fraction of called SNPs as knownSites and perform multiple roun
-ds of BaseRecalibration and SNPcalling
+ # for non-model organisms it is possiple to interpret the high quality fraction of called SNPs as knownSites and perform multiple rounds of BaseRecalibration and SNPcalling
  #java -jar $GATK -T BaseRecalibrator -R ${reference} -I ${infolder}/${infile}
  #	-knownSites ${dbsnp} -knownSites ${gold_indels} -o recal_data.table 2>BaseRecalibrator.err
 
  #1. Run UnifiedGenotyper
  # this takes approx. 1.8 min
-java -jar $GATK -T UnifiedGenotyper -R $REF_FILE -I ${BAM_FILE%%.bam}_realigned.bam -ploidy 2 -glm BOTH -stand_call_conf 30 -stand_emi
-t_conf 10 -mbq 10 -o raw_variants_UG.vcf
+java -jar $GATK -T UnifiedGenotyper \
+	-R $REF_FILE \
+	-I ${BAM_FILE%%.bam}_realigned.bam \
+	-ploidy 1 \
+	-glm BOTH \
+	-stand_call_conf 30 \
+	-stand_emit_conf 10 \
+	-mbq 10 \
+	-o raw_variants_UG.vcf
  
  #2. Run HaplotypeCaller
  # this takes approx. 1.7 min
-java -jar $GATK -T HaplotypeCaller -R $REF_FILE -I ${BAM_FILE%%.bam}_realigned.bam -stand_call_conf 30 -stand_emit_conf 10 -o raw_vari
-ants_HC.vcf
+java -jar $GATK -T HaplotypeCaller \
+	-R $REF_FILE \
+	-I ${BAM_FILE%%.bam}_realigned.bam \
+	-ploidy 1 \
+	-stand_call_conf 30 \
+	-stand_emit_conf 10 \
+	-o raw_variants_HC.vcf
 ```
 
-- Try to understand all the steps. 
-- Download this human sample, adapt the script and run GATK on it:
+- Try to understand all the steps.
+- We run both UnifiedGenotyper and HaplotypeCaller. What is the difference?
+ 
+ 
+#### GATK with a human sample
+
+Next we will work on the low coverage data set of the [1000 genomes project](http://www.1000genomes.org/). The human sample (HG00154) was sequenced with ILLUMINA and the reads were aligned using bwa ([see details](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/README.alignment_data)) against the human reference genome hg19.
+We will download only a subset of the original data (to safe disk space and execution time), 1 MB of chromosome 20.
+
+- First create a new folder and download this human sample (The download may take some minutes - in the meanwhile, open a new tab of your terminal and proceed with the next steps):
 ```
-samtools view -h ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase1/data/HG00154/alignment/HG00154.mapped.ILLUMINA.bwa.GBR.low_coverage.20101123.bam 17:7512445-7513455
+samtools view -h ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/HG00154/alignment/HG00154.mapped.ILLUMINA.bwa.GBR.low_coverage.20120522.bam 17:7512445-7513455 > HG00154.low_coverage.chr17.7512445-7513455.bam
+
+samtools view -Sb HG00154.low_coverage.chr17.7512445-7513455.sam > HG00154.low_coverage.chr17.7512445-7513455.bam
+
+
+
+samtools view -h ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase1/data/HG00154/alignment/HG00154.mapped.ILLUMINA.bwa.GBR.low_coverage.20101123.bam 20:1000000-2000000
 ```
-- Index the resulting vcf files
-- Filter out low-quality variants and have a look:
+- Download the sequence of chromosome 20 and rename it: 
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/genbank/genomes/Eukaryotes/vertebrates_mammals/Homo_sapiens/GRCh37/Primary_Assembly/assembled_chromosomes/FASTA/chr17.fa.gz
+zcat chr17.fa.gz | awk '{if ($1==">gi|224384752|gb|CM000679.1|") {print ">17"} else {print $0}}' > chr17.fa
+rm chr17.fa.gz
+```
+- Index the BAM file
+- Copy the script, adapt it (BAM_FILE, REF_FILE, ploidy) and run GATK on it
+- Compress & index the resulting vcf files
+- Filter out low-quality variants and have a look at the filtered file:
 ```
 ~/software/bcftools/bcftools filter -O z -o VCF.vcf-filtered.gz -i'%QUAL>10' VCF.vcf.gz
 vt peek VCF.vcf-filtered.gz
@@ -414,6 +455,8 @@ VCFtools are specialized tools for working with VCF files: validating, filtering
 Often some regions of the genome are low coverage only (or even without any aligned reads) consequently we cannot tell whether polymorphisms exist in these regions. We want to identify such regions and find out whether they overlap with genes.
 The bedtools utilities are convenient for working with genomic coordinates for example bedtools allows one to intersect, merge, count, complement, and shuffle genomic intervals from multiple files in widely-used genomic file formats such as BAM, BED, GFF/GTF, VCF. You will find the documentation under http://bedtools.readthedocs.org/en/latest/index.html
 
+
+Use `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam` from the first exercise.  
 
 - Try to find out how many nucleotides in the *E. coli* genome do not reach a minimal read coverage of 5, 10 or 20 reads (Hint: Use samtools depth, direct the output into a file and then use awk or R to process the file)
 - Do some low coverage nucleotides overlap with annotated genes? (Hint: use the command intersect from bedtools)
