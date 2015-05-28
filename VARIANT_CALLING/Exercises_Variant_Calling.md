@@ -117,7 +117,7 @@ The index command creates an additional file allowing faster access. BAM index f
 
 Now we can run an analysis without any parameter optimization just setting the ploidy to 1:
 ```
-$FREEBAYES –p 1 -f EcoliDH10B.fa Ecoli_DH10B-mdup.bam > Ecoli_DH10B-mdup.vcf
+$FREEBAYES -p 1 -f EcoliDH10B.fa Ecoli_DH10B-mdup.bam > Ecoli_DH10B-mdup.vcf
 ```
 
 ### Indexing vcf files
@@ -255,14 +255,14 @@ GATK=~/software/GATK/GenomeAnalysisTK.jar
 PICARD=~/software/picard-tools-1.130/picard.jar
 
  # IDEAS to improve the script:
- # add memory parameter to java -Xmx6g
+ # add variable with memory parameter to java -Xmx6g
  # add 2> to capture errors
  # add input and output folders
 
 
 REF_FILE=EcoliDH10B.fa
 BAM_FILE=MiSeq_Ecoli_DH10B_110721_PF_subsample.bam
-outfolder=gatk_variants
+ # outfolder=gatk_variants
 
  # build indexes for Genome and BAM files
 $SAMTOOLS faidx $REF_FILE
@@ -315,14 +315,14 @@ java -Xmx1g -jar $PICARD BuildBamIndex \
 
 
  # identify regions for indel local realignment of the selected chromosome
-java -jar $GATK -T RealignerTargetCreator \
+java -Xmx1g -jar $GATK -T RealignerTargetCreator \
 	-R $REF_FILE \
-	-I $BAM_FILE \
+	-I ${BAM_FILE%%.*}_rdup-rg.bam \
 	-o target_intervals.list
 
  # perform indel local realignment of the selected chromosome
-java -jar $GATK -T IndelRealigner \
-	-R $REF_FILE \
+java -Xmx1g -jar $GATK -T IndelRealigner \
+	-R ${BAM_FILE%%.*}_rdup-rg.bam \
 	-I $BAM_FILE \
 	-targetIntervals target_intervals.list \
 	-o ${BAM_FILE%%.bam}_realigned.bam
@@ -330,12 +330,12 @@ java -jar $GATK -T IndelRealigner \
  # analyze patterns of covariation
  # only possible with known SNPs 
  # for non-model organisms it is possiple to interpret the high quality fraction of called SNPs as knownSites and perform multiple rounds of BaseRecalibration and SNPcalling
- #java -jar $GATK -T BaseRecalibrator -R ${reference} -I ${infolder}/${infile}
+ #java -Xmx1g -jar $GATK -T BaseRecalibrator -R ${reference} -I ${BAM_FILE%%.bam}_realigned.bam
  #	-knownSites ${dbsnp} -knownSites ${gold_indels} -o recal_data.table 2>BaseRecalibrator.err
 
  #1. Run UnifiedGenotyper
  # this takes approx. 1.8 min
-java -jar $GATK -T UnifiedGenotyper \
+java -Xmx1g -jar $GATK -T UnifiedGenotyper \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.bam}_realigned.bam \
 	-ploidy 1 \
@@ -347,7 +347,7 @@ java -jar $GATK -T UnifiedGenotyper \
  
  #2. Run HaplotypeCaller
  # this takes approx. 1.7 min
-java -jar $GATK -T HaplotypeCaller \
+java -Xmx1g -jar $GATK -T HaplotypeCaller \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.bam}_realigned.bam \
 	-ploidy 1 \
@@ -538,7 +538,7 @@ Nice! We now have a familiar VCF file.
  
 ### Example Scripts
  
-#### SNP calling using freebayes with BAM preprocessing (fix mate pairs, mark duplicates)**
+#### SNP calling using freebayes with BAM preprocessing (fix mate pairs, mark duplicates)
 
 ```
 SAMTOOLS=~/software/samtools/samtools
