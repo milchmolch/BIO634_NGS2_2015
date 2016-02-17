@@ -36,7 +36,7 @@ make
 
 Go to the ~/software directory and build & install samtools:
 ```
-git clone git clone https://github.com/samtools/samtools
+git clone https://github.com/samtools/samtools
 cd samtools
 make
 ```
@@ -363,7 +363,8 @@ java -Xmx1g -jar $GATK -T HaplotypeCaller \
 #### GATK with a human sample
 
 Next we will work on the low coverage data set of the [1000 genomes project](http://www.1000genomes.org/). The human sample (HG00154) was sequenced with ILLUMINA and the reads were aligned using bwa ([see details](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/README.alignment_data)) against the human reference genome hg19.
-We will download only a subset of the original data (to safe disk space and execution time), 1 MB of chromosome 20.
+
+We will download only a subset of the original data (to safe disk space and execution time), 1 MB of chromosome 20.
 
 - First create a new folder and download this human sample (The download may take some minutes - in the meanwhile, open a new tab of your terminal and proceed with the next steps):
 ```
