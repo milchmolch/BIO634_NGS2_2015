@@ -322,15 +322,15 @@ java -Xmx1g -jar $GATK -T RealignerTargetCreator \
 
  # perform indel local realignment of the selected chromosome
 java -Xmx1g -jar $GATK -T IndelRealigner \
-	-R ${BAM_FILE%%.*}_rdup-rg.bam \
-	-I $BAM_FILE \
+	-R $REF_FILE \
+	-I ${BAM_FILE%%.*}_rdup-rg.bam \
 	-targetIntervals target_intervals.list \
 	-o ${BAM_FILE%%.bam}_realigned.bam
 
  # analyze patterns of covariation
  # only possible with known SNPs 
  # for non-model organisms it is possiple to interpret the high quality fraction of called SNPs as knownSites and perform multiple rounds of BaseRecalibration and SNPcalling
- #java -Xmx1g -jar $GATK -T BaseRecalibrator -R ${reference} -I ${BAM_FILE%%.bam}_realigned.bam
+ #java -Xmx1g -jar $GATK -T BaseRecalibrator -R $REF_FILE -I ${BAM_FILE%%.bam}_realigned.bam
  #	-knownSites ${dbsnp} -knownSites ${gold_indels} -o recal_data.table 2>BaseRecalibrator.err
 
  #1. Run UnifiedGenotyper
