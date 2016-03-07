@@ -433,7 +433,7 @@ java -jar snpEff.jar download -v athalianaTair10
 ### Annotate using SnpEff
 
 ```
-java -Xmx4g -jar snpEff.jar athalianaTair10 test.Ath.vcf > test.Ath.ann.vcf
+java -Xmx4g -jar snpEff.jar -stats summary.html athalianaTair10 test.Ath.vcf > test.Ath.ann.vcf
 ```
 
 ```
